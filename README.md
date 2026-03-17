@@ -8,7 +8,6 @@ Ce site présente mes projets réalisés dans le cadre du BTS SIO SISR, mes comp
 
 Le portfolio est accessible en ligne via GitHub Pages :
 
-[Voir le site](https://<ton-pseudo-github>.github.io/<nom-du-depot>/)
 
 ## Contenu
 - Projets d'entreprise et scolaires

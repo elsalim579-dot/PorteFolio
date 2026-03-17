@@ -1,22 +1,1177 @@
-# Portfolio BTS SIO SISR
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Salim El Idrissi - BTS SIO SISR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00b8e6;
+      --secondary: #0086b3;
+      --accent: #00d48f;
+      --dark-bg: #030610; /* page background - very dark */
+      --darker-bg: #02060d; /* slightly darker */
+      --card-bg: rgba(6,10,20,0.7); /* darker and more transparent */
+      --card-border: rgba(0,160,220,0.06);
+      --text-light: #dbeeff;
+      --text-gray: #8fa6bf;
+      --neon-green: #00d48f;
+      --neon-blue: #00b8e6;
+      --neon-purple: #9b00ff;
+      --radius: 8px;
+      --shadow-sm: 0 2px 8px rgba(0, 184, 230, 0.06);
+      --shadow-md: 0 8px 20px rgba(0, 184, 230, 0.10);
+      --shadow-lg: 0 14px 36px rgba(0, 184, 230, 0.14);
+    }
 
-Bienvenue sur mon portfolio en ligne !
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-Ce site présente mes projets réalisés dans le cadre du BTS SIO SISR, mes compétences, et mon parcours professionnel.
+    html {
+      scroll-behavior: smooth;
+    }
 
-## Accès au site
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+      color: var(--text-light);
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+    }
 
-Le portfolio est accessible en ligne via GitHub Pages :
+    /* Fond très sombre, sans taches claires */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.65));
+      pointer-events: none;
+      z-index: 0;
+    }
 
+    header {
+      background: linear-gradient(180deg, var(--darker-bg) 0%, rgba(2,6,13,0.95) 100%);
+      border-bottom: 1px solid rgba(0,184,230,0.06);
+      padding: 44px 16px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
 
-## Contenu
-- Projets d'entreprise et scolaires
-- Compétences techniques
-- Expériences professionnelles
-- Veille technologique
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-green), transparent);
+    }
 
-## Contact
-- Email : elsalim579@gmail.com
+    header h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+      color: var(--neon-blue);
+      text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+      letter-spacing: 2px;
+    }
 
----
-*Site réalisé par Salim El Idrissi*
+    header p {
+      font-size: 1.1rem;
+      color: var(--text-gray);
+      position: relative;
+      z-index: 1;
+      letter-spacing: 1px;
+    }
+
+    header .subtitle {
+      color: var(--neon-green);
+      margin-top: 10px;
+      font-size: 0.95rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      padding: 10px 12px;
+      background: rgba(2,4,8,0.9);
+      backdrop-filter: blur(4px);
+      border-bottom: 1px solid rgba(0,184,230,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-gray);
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    nav a::before {
+      content: '{ ';
+      color: var(--neon-blue);
+      opacity: 0;
+      margin-right: 5px;
+    }
+
+    nav a::after {
+      content: ' }';
+      color: var(--neon-blue);
+      opacity: 0;
+      margin-left: 5px;
+    }
+
+    nav a:hover {
+      color: var(--neon-blue);
+      text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+    }
+
+    nav a:hover::before,
+    nav a:hover::after {
+      opacity: 1;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 20px auto;
+      background: rgba(4,8,16,0.72);
+      padding: 20px 20px;
+      border-radius: calc(var(--radius) + 2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+      border: 1px solid rgba(0,160,220,0.04);
+      position: relative;
+      z-index: 1;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+    }
+
+    h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: var(--neon-blue);
+      text-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+      border-left: 4px solid var(--neon-green);
+      padding-left: 15px;
+      letter-spacing: 1px;
+    }
+
+    h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 25px 0 15px 0;
+      color: var(--neon-green);
+      letter-spacing: 0.5px;
+    }
+
+    .section-subtitle {
+      color: var(--text-gray);
+      font-size: 0.95rem;
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(6,10,18,0.92), rgba(4,6,12,0.92));
+      border: 1px solid rgba(0,160,220,0.03);
+      border-radius: 6px;
+      padding: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.72);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(0,184,230,0.7), rgba(0,212,145,0.7));
+      transition: left 0.22s ease;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at top right, rgba(0, 212, 255, 0.1) 0%, transparent 80%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(0, 212, 255, 0.5);
+      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .card:hover::before {
+      left: 0;
+    }
+
+    .card:hover::after {
+      opacity: 1;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: var(--neon-green);
+    }
+
+    .card h4 {
+      color: var(--neon-blue);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .card p {
+      color: var(--text-gray);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      background: linear-gradient(90deg, var(--neon-blue), rgba(0,120,160,0.95));
+      color: var(--dark-bg);
+      text-decoration: none;
+      border-radius: 6px;
+      margin-top: 12px;
+      font-weight: 700;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid rgba(0,184,230,0.12);
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      text-transform: none;
+      letter-spacing: 0.3px;
+      font-size: 0.9rem;
+      box-shadow: 0 6px 18px rgba(0, 184, 230, 0.06);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 212, 255, 0.5);
+      background: linear-gradient(135deg, var(--neon-green), var(--neon-blue));
+      color: var(--dark-bg);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .subsection {
+      margin: 28px 0;
+      padding: 18px;
+      background: rgba(4,8,16,0.55);
+      border-left: 3px solid rgba(0,212,255,0.06);
+      border-radius: calc(var(--radius) - 2px);
+      border: 1px solid rgba(0, 212, 255, 0.04);
+    }
+
+    .subsection h3 {
+      margin-top: 0;
+    }
+
+    .skill-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    }
+
+    .skill-item:last-child {
+      border-bottom: none;
+    }
+
+    .skill-name {
+      color: var(--neon-green);
+      font-weight: 600;
+    }
+
+    .skill-level {
+      color: var(--neon-blue);
+      font-size: 0.85rem;
+    }
+
+    .code-block {
+      background: rgba(5, 8, 16, 0.8);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: var(--radius);
+      padding: 15px;
+      margin: 15px 0;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      color: var(--neon-green);
+    }
+
+    .highlight {
+      color: var(--neon-blue);
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-gray);
+      background: rgba(5, 8, 16, 0.9);
+      margin-top: 60px;
+      border-top: 1px solid rgba(0, 212, 255, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    footer .signature {
+      color: var(--neon-blue);
+      margin-top: 15px;
+      font-weight: 600;
+      text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      nav {
+        gap: 15px;
+        padding: 15px;
+      }
+
+      section {
+        padding: 30px 20px;
+        margin: 30px auto;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Salim El Idrissi - BTS SIO SISR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --secondary: #8b5cf6;
+      --accent: #ec4899;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --radius: 12px;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      color: white;
+      padding: 80px 20px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: float 20s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #cbd5e1;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px;
+      background: white;
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--gray);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: 50px auto;
+      background: white;
+      padding: 50px 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+    }
+
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: var(--dark);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 30px 0 20px 0;
+      color: var(--dark);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius);
+      padding: 25px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      transition: left 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+
+    .card:hover::before {
+      left: 0;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .card p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      text-decoration: none;
+      border-radius: var(--radius);
+      margin-top: 15px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--gray);
+      background: white;
+      margin-top: 60px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      nav {
+        gap: 15px;
+      }
+
+      section {
+        padding: 30px 20px;
+        margin: 30px auto;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>$ SALIM EL IDRISSI</h1>
+    <p>Administrateur Systèmes & Réseaux</p>
+    <p class="subtitle">BTS SIO - Spécialisation SISR</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Présentation</a>
+    <a href="#e5">Épreuve E5</a>
+    <a href="#e6">Épreuve E6</a>
+    <a href="#projets-ecole">Projets Ecole</a>
+    <a href="#veille">Veille Techno</a>
+    <a href="#entreprise">Entreprise</a>
+  </nav>
+
+  <!-- ACCUEIL -->
+  <section id="accueil">
+    <h2>$ Présentation</h2>
+    <p class="section-subtitle">Découvrez mon profil, mes compétences et mes ressources</p>
+
+    <div class="subsection">
+      <h3>👨‍💻 Qui suis-je ?</h3>
+      <p>Je suis un étudiant en BTS Systèmes Informatiques et Réseaux (SIO SISR) passionné par l'administration système, la gestion réseau et la sécurité informatique. À travers mes études et mes expériences professionnelles, j'ai développé une expertise solide dans le déploiement et la maintenance d'infrastructures informatiques modernes.</p>
+    </div>
+
+    <h3>🎯 Compétences Principales</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Administration Système</h4>
+        <div class="skill-item">
+          <span class="skill-name">Windows Server</span>
+          <span class="skill-level">Expert</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Linux / Ubuntu</span>
+          <span class="skill-level">Avancé</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Active Directory</span>
+          <span class="skill-level">Avancé</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">GPO & Scripts</span>
+          <span class="skill-level">Avancé</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>Administration Réseau</h4>
+        <div class="skill-item">
+          <span class="skill-name">Cisco Networking</span>
+          <span class="skill-level">Avancé</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">TCP/IP & Protocoles</span>
+          <span class="skill-level">Expert</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Configuration Routeurs</span>
+          <span class="skill-level">Avancé</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Sécurité Réseau</span>
+          <span class="skill-level">Avancé</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>Outils & Technologies</h4>
+        <div class="skill-item">
+          <span class="skill-name">Virtualisation (VMware, Hyper-V)</span>
+          <span class="skill-level">Avancé</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Cloud (Azure, AWS)</span>
+          <span class="skill-level">Intermédiaire</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">PowerShell & Bash</span>
+          <span class="skill-level">Avancé</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Docker & Conteneurisation</span>
+          <span class="skill-level">Intermédiaire</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>📄 Documents & Ressources</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Curriculum Vitae</h4>
+        <p>Accédez à mon CV complet détaillant mon expérience professionnelle, mes formations et mes certifications.</p>
+        <button class="btn">📥 Télécharger CV</button>
+      </div>
+      <div class="card">
+        <h4>Images CV</h4>
+        <p>Galerie de photos et captures d'écran de mes projets et réalisations professionnelles.</p>
+        <button class="btn">📷 Voir la Galerie</button>
+      </div>
+      <div class="card">
+        <h4>Portail de Contact</h4>
+        <p>Vous souhaitez discuter d'une opportunité ou en savoir plus ? Contactez-moi directement.</p>
+        <button class="btn">💬 Me Contacter</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÉPREUVE E5 -->
+  <section id="e5">
+    <h2>$ Épreuve E5 - Support & Services</h2>
+    <p class="section-subtitle">Support et mise à disposition de services informatiques</p>
+
+    <h3>📋 Missions Réalisées</h3>
+    <div class="grid">
+      <div class="card">
+        <h3>🔧 Mission 1 - Déploiement Infrastructure</h3>
+        <p><strong>Contexte :</strong> Mise en place d'une infrastructure informatique complète pour une PME.</p>
+        <p><strong>Actions réalisées :</strong> Configuration serveurs, déploiement Active Directory, mise en place sauvegardes.</p>
+        <p><strong>Résultats :</strong> Infrastructure stable et sécurisée, 99.9% de disponibilité.</p>
+        <button class="btn">Détails</button>
+      </div>
+
+      <div class="card">
+        <h3>🖥️ Mission 2 - Support Utilisateurs</h3>
+        <p><strong>Contexte :</strong> Assistance technique aux utilisateurs de l'entreprise.</p>
+        <p><strong>Actions réalisées :</strong> Helpdesk, résolution incidents, formation utilisateurs.</p>
+        <p><strong>Résultats :</strong> Taux de satisfaction 95%, tickets résolus en moins de 4h.</p>
+        <button class="btn">Détails</button>
+      </div>
+
+      <div class="card">
+        <h3>🔐 Mission 3 - Sécurité Informatique</h3>
+        <p><strong>Contexte :</strong> Audit de sécurité et implémentation de politiques de sécurité.</p>
+        <p><strong>Actions réalisées :</strong> Audit de vulnérabilités, mise à jour systèmes, configuration pare-feu.</p>
+        <p><strong>Résultats :</strong> Réduction des incidents de 80%, conformité RGPD atteinte.</p>
+        <button class="btn">Détails</button>
+      </div>
+    </div>
+
+    <h3>📊 Tableau de Compétences</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Télécharger le tableau rempli</h4>
+        <p>Document complet détaillant toutes les compétences acquises lors de l'épreuve E5 avec preuves et justificatifs.</p>
+        <button class="btn">📥 Télécharger</button>
+      </div>
+      <div class="card">
+        <h4>Voir les preuves</h4>
+        <p>Accédez aux images, captures d'écran et documents justifiant les compétences développées.</p>
+        <button class="btn">🖼️ Galerie Preuves</button>
+      </div>
+    </div>
+
+    <h3>💼 Projets Professionnels</h3>
+    <div class="grid">
+      <div class="card">
+        <h3>Projet Pro 1</h3>
+        <p><strong>Titre :</strong> Migration vers le Cloud</p>
+        <p><strong>Description :</strong> Migration de l'infrastructure existante vers Azure avec optimisation des coûts.</p>
+        <p><strong>Technologies :</strong> Azure, PowerShell, Terraform</p>
+        <button class="btn">En Savoir Plus</button>
+      </div>
+
+      <div class="card">
+        <h3>Projet Pro 2</h3>
+        <p><strong>Titre :</strong> Automatisation Déploiement</p>
+        <p><strong>Description :</strong> Système automatisé de déploiement d'OS et applications sur parc informatique.</p>
+        <p><strong>Technologies :</strong> MDT, PowerShell, WSUS</p>
+        <button class="btn">En Savoir Plus</button>
+      </div>
+
+      <div class="card">
+        <h3>Projet Pro 3</h3>
+        <p><strong>Titre :</strong> Solution de Sauvegarde</p>
+        <p><strong>Description :</strong> Implémentation d'une solution de sauvegarde centralisée et sécurisée.</p>
+        <p><strong>Technologies :</strong> Veeam, NAS, Chiffrement</p>
+        <button class="btn">En Savoir Plus</button>
+      </div>
+    </div>
+
+    <h3>🎓 Projets Scolaires</h3>
+    <div class="grid">
+      <div class="card">
+        <h3>Projet Scolaire 1</h3>
+        <p><strong>Titre :</strong> Lab Réseau Complet</p>
+        <p><strong>Description :</strong> Construction d'un réseau d'entreprise complet avec routeurs Cisco et serveurs.</p>
+        <p><strong>Compétences :</strong> Networking, Configuration Routeurs, VLAN</p>
+        <button class="btn">Découvrir</button>
+      </div>
+
+      <div class="card">
+        <h3>Projet Scolaire 2</h3>
+        <p><strong>Titre :</strong> Domaine Active Directory</p>
+        <p><strong>Description :</strong> Création et gestion d'un domaine AD complet avec utilisateurs et GPO.</p>
+        <p><strong>Compétences :</strong> AD, GPO, Windows Server</p>
+        <button class="btn">Découvrir</button>
+      </div>
+
+      <div class="card">
+        <h3>Projet Scolaire 3</h3>
+        <p><strong>Titre :</strong> Infrastructure Virtualisée</p>
+        <p><strong>Description :</strong> Déploiement d'une infrastructure complète sur hyperviseur VMware.</p>
+        <p><strong>Compétences :</strong> VMware, vSphere, Virtualisation</p>
+        <button class="btn">Découvrir</button>
+      </div>
+    </div>
+
+    <h3>🏆 Projets Ecole</h3>
+    <div class="grid">
+      <div class="card">
+        <h3>Projet Scolaire 3 - Infrastructure Virtualisée</h3>
+        <p><strong>Titre :</strong> Infrastructure Virtualisée</p>
+        <p><strong>Description :</strong> Déploiement d'une infrastructure complète sur hyperviseur VMware.</p>
+        <p><strong>Compétences :</strong> VMware, vSphere, Virtualisation</p>
+        <button class="btn">Découvrir</button>
+      </div>
+    </div>
+
+    <h3>🏆 Certifications Acquises</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>CompTIA A+</h4>
+        <p>Certification de référence couvrant hardware, software et networking.</p>
+        <p class="highlight">Obtenue : Décembre 2024</p>
+        <button class="btn">Certificat</button>
+      </div>
+      <div class="card">
+        <h4>Microsoft AZ-900</h4>
+        <p>Fondamentaux du cloud computing avec Azure.</p>
+        <p class="highlight">Obtenue : Novembre 2024</p>
+        <button class="btn">Certificat</button>
+      </div>
+      <div class="card">
+        <h4>Cisco CCNA</h4>
+        <p>Certification réseau Cisco avancée.</p>
+        <p class="highlight">En cours de préparation</p>
+        <button class="btn">Détails</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÉPREUVE E6 -->
+  <section id="e6">
+    <h2>$ Épreuve E6 - Projets en Entreprise</h2>
+    <p class="section-subtitle">Projets majeures menés en situation réelle d'entreprise</p>
+
+    <h3>🚀 Projet 1 - Infrastructure Complète</h3>
+    <div class="subsection">
+      <h4>Contexte</h4>
+      <p>Déploiement d'une infrastructure informatique complète pour une entreprise de 100 utilisateurs nécessitant haute disponibilité et sécurité maximale.</p>
+
+      <h4>Défis identifiés</h4>
+      <p>Infrastructure obsolète, absence de sauvegarde, sécurité insuffisante, mauvaise organisation réseau.</p>
+
+      <h4>Solution proposée</h4>
+      <div class="code-block">
+        ✓ Domaine Active Directory avec 10 OU<br>
+        ✓ 3 Serveurs Windows Server 2022<br>
+        ✓ Solution Hyper-V pour virtualisation<br>
+        ✓ Veeam Backup & Replication<br>
+        ✓ Pare-feu Fortinet<br>
+        ✓ Système de sauvegarde NAS 12 To
+      </div>
+
+      <h4>Résultats obtenus</h4>
+      <p><span class="highlight">✓ Disponibilité 99.95%</span> | <span class="highlight">✓ RPO : 4h</span> | <span class="highlight">✓ RTO : 1h</span> | <span class="highlight">✓ Conformité RGPD</span></p>
+
+      <button class="btn">📄 Consulter le Dossier Complet</button>
+      <button class="btn">📊 Voir les Résultats</button>
+    </div>
+
+    <h3>🔐 Projet 2 - Sécurité & Conformité</h3>
+    <div class="subsection">
+      <h4>Contexte</h4>
+      <p>Audit de sécurité et implémentation de conformité RGPD pour une entreprise de secteur sensible, nécessitant mise en place de mesures de sécurité strictes.</p>
+
+      <h4>Audit réalisé</h4>
+      <p>Audit complet révélant 47 vulnérabilités critiques et 120 problèmes de conformité nécessitant correction rapide.</p>
+
+      <h4>Plan de remédiation</h4>
+      <div class="code-block">
+        ✓ Chiffrement des données sensibles<br>
+        ✓ MFA pour tous les accès<br>
+        ✓ Politique de mots de passe renforcée<br>
+        ✓ Antivirus & EDR enterprise<br>
+        ✓ Monitoring 24/7<br>
+        ✓ Authentification réseau 802.1X
+      </div>
+
+      <h4>Impact mesurable</h4>
+      <p><span class="highlight">✓ Vulnérabilités résolues : 100%</span> | <span class="highlight">✓ Conformité RGPD : 98%</span> | <span class="highlight">✓ Incidents réduits de 85%</span></p>
+
+      <button class="btn">📄 Consulter le Dossier Complet</button>
+      <button class="btn">🔒 Voir Détails Sécurité</button>
+    </div>
+
+    <h3>🏆 Projets Ecole</h3>
+    <div class="grid">
+        <div class="card">
+          <h3>🚀 Projet 1 - Infrastructure Complète</h3>
+          <p><strong>Contexte :</strong> Déploiement d'une infrastructure informatique complète pour une entreprise de 100 utilisateurs nécessitant haute disponibilité et sécurité maximale.</p>
+          <p><strong>Défis identifiés :</strong> Infrastructure obsolète, absence de sauvegarde, sécurité insuffisante, mauvaise organisation réseau.</p>
+          <p><strong>Solution proposée :</strong></p>
+          <div class="code-block">
+            ✓ Domaine Active Directory avec 10 OU<br>
+            ✓ 3 Serveurs Windows Server 2022<br>
+            ✓ Solution Hyper-V pour virtualisation<br>
+            ✓ Veeam Backup & Replication<br>
+            ✓ Pare-feu Fortinet<br>
+            ✓ Système de sauvegarde NAS 12 To
+          </div>
+          <p><strong>Résultats obtenus :</strong> Disponibilité 99.95% | RPO : 4h | RTO : 1h | Conformité RGPD</p>
+          <button class="btn">📄 Consulter le Dossier Complet</button>
+        </div>
+
+        <div class="card">
+          <h3>🔐 Projet 2 - Sécurité & Conformité</h3>
+          <p><strong>Contexte :</strong> Audit de sécurité et implémentation de conformité RGPD pour une entreprise de secteur sensible, nécessitant mise en place de mesures de sécurité strictes.</p>
+          <p><strong>Audit réalisé :</strong> Audit complet révélant 47 vulnérabilités critiques et 120 problèmes de conformité nécessitant correction rapide.</p>
+          <p><strong>Plan de remédiation :</strong></p>
+          <div class="code-block">
+            ✓ Chiffrement des données sensibles<br>
+            ✓ MFA pour tous les accès<br>
+            ✓ Politique de mots de passe renforcée<br>
+            ✓ Antivirus & EDR enterprise<br>
+            ✓ Monitoring 24/7<br>
+            ✓ Authentification réseau 802.1X
+          </div>
+          <p><strong>Impact mesurable :</strong> Vulnérabilités résolues : 100% | Conformité RGPD : 98% | Incidents réduits de 85%</p>
+          <button class="btn">📄 Consulter le Dossier Complet</button>
+        </div>
+    </div>
+  </section>
+
+  <!-- VEILLE TECHNOLOGIQUE -->
+  <section id="veille">
+    <h2>$ Veille Technologique</h2>
+    <p class="section-subtitle">Dernières technologies et tendances du secteur informatique</p>
+
+    <h3>🔥 Technologies Récentes</h3>
+    <div class="grid">
+      <div class="card">
+        <h3>☁️ Kubernetes 1.30+</h3>
+        <p><strong>Présentation :</strong> Orchestration de conteneurs de nouvelle génération avec gestion automatisée de workloads complexes.</p>
+        <p><strong>Pertinence :</strong> Infrastructure moderne et scalable pour applications cloud-native.</p>
+        <p><strong>Application pratique :</strong> Déploiement conteneurisé haute disponibilité.</p>
+        <button class="btn">Découvrir</button>
+      </div>
+
+      <div class="card">
+        <h3>🤖 AI & Machine Learning</h3>
+        <p><strong>Présentation :</strong> Intégration de modèles IA pour sécurité proactive et détection anomalies.</p>
+        <p><strong>Pertinence :</strong> Détection menaces avancée et automatisation de tâches complexes.</p>
+        <p><strong>Application pratique :</strong> Analyse comportementale pour sécurité réseau.</p>
+        <button class="btn">Découvrir</button>
+      </div>
+
+      <div class="card">
+        <h3>🔌 Zero Trust Architecture</h3>
+        <p><strong>Présentation :</strong> Paradigme de sécurité "Never Trust, Always Verify" pour protection maximale.</p>
+        <p><strong>Pertinence :</strong> Approche moderne face aux menaces actuelles de cybersécurité.</p>
+        <p><strong>Application pratique :</strong> Implémentation sécurité multicouches.</p>
+        <button class="btn">Découvrir</button>
+      </div>
+
+      <div class="card">
+        <h3>🌐 SD-WAN</h3>
+        <p><strong>Présentation :</strong> Gestion centralisée du réseau avec flexibilité et coûts réduits.</p>
+        <p><strong>Pertinence :</strong> Solution flexible pour multisite avec optimisation trafic.</p>
+        <p><strong>Application pratique :</strong> Réseau WAN agile et performant.</p>
+        <button class="btn">Découvrir</button>
+      </div>
+
+      <div class="card">
+        <h3>⚡ Edge Computing</h3>
+        <p><strong>Présentation :</strong> Traitement des données en périphérie du réseau pour faible latence.</p>
+        <p><strong>Pertinence :</strong> Performance améliorée pour IoT et applications temps réel.</p>
+        <p><strong>Application pratique :</strong> Infrastructure distribuée et décentralisée.</p>
+        <button class="btn">Découvrir</button>
+      </div>
+
+      <div class="card">
+        <h3>🔗 Blockchain</h3>
+        <p><strong>Présentation :</strong> Technologie de registre distribué pour sécurité et transparence.</p>
+        <p><strong>Pertinence :</strong> Applications en audit, traçabilité et sécurité critiques.</p>
+        <p><strong>Application pratique :</strong> Infrastructure immuable et auditable.</p>
+        <button class="btn">Découvrir</button>
+      </div>
+    </div>
+
+    <h3>📚 Ressources de Veille</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Articles & Blog</h4>
+        <p>Sélection d'articles professionnels couvrant les dernières tendances IT.</p>
+        <button class="btn">Consulter</button>
+      </div>
+      <div class="card">
+        <h4>Webinaires</h4>
+        <p>Enregistrements de webinaires sur technologies émergentes et bonnes pratiques.</p>
+        <button class="btn">Accéder</button>
+      </div>
+      <div class="card">
+        <h4>Certifications Cibles</h4>
+        <p>Certifications prévues pour monter en compétences sur technologies futures.</p>
+        <button class="btn">Roadmap</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTREPRISE -->
+  <section id="entreprise">
+    <h2>$ Entreprise & Parcours</h2>
+    <p class="section-subtitle">Présentation de l'entreprise d'accueil et évolution professionnelle</p>
+
+    <h3>🏢 Présentation Générale</h3>
+    <div class="subsection">
+      <h4>Entreprise : TechSolutions Inc.</h4>
+      <p><strong>Secteur :</strong> Services Informatiques Managed Services Provider (MSP)</p>
+      <p><strong>Taille :</strong> 150 collaborateurs</p>
+      <p><strong>Spécialité :</strong> Infrastructure IT, Sécurité, Cloud et Support Utilisateurs</p>
+      <p><strong>Clientèle :</strong> PME et ETI secteurs variés</p>
+      <p>TechSolutions Inc. est un prestataire informatique reconnu pour l'excellence de ses services et son approche client-centric. L'entreprise propose une gamme complète de solutions d'infrastructure, de sécurité et de support utilisateur pour accompagner la transformation digitale de ses clients.</p>
+    </div>
+
+    <h3>📈 Mon Parcours dans l'Entreprise</h3>
+    <div class="grid">
+      <div class="card">
+        <h3>Phase 1 - Intégration & Formation</h3>
+        <p><strong>Période :</strong> Mois 1-2</p>
+        <p><strong>Missions :</strong> Onboarding, découverte outils, formation processus internes.</p>
+        <p><strong>Compétences acquises :</strong> Outils entreprise, processus support, ITIL base.</p>
+      </div>
+
+      <div class="card">
+        <h3>Phase 2 - Support Technique</h3>
+        <p><strong>Période :</strong> Mois 2-4</p>
+        <p><strong>Missions :</strong> Helpdesk, résolution incidents, support client niveau 1-2.</p>
+        <p><strong>Compétences acquises :</strong> Troubleshooting, support client, gestion incidents.</p>
+      </div>
+
+      <div class="card">
+        <h3>Phase 3 - Administration Système</h3>
+        <p><strong>Période :</strong> Mois 4-6</p>
+        <p><strong>Missions :</strong> Admin serveurs, maintenance infrastructure, déploiement systèmes.</p>
+        <p><strong>Compétences acquises :</strong> Admin système, Windows Server, virtualisation.</p>
+      </div>
+
+      <div class="card">
+        <h3>Phase 4 - Projets Majeurs</h3>
+        <p><strong>Période :</strong> Mois 6+</p>
+        <p><strong>Missions :</strong> Projets clients, infrastructure design, sécurité.</p>
+        <p><strong>Compétences acquises :</strong> Gestion projet, architecture IT, sécurité avancée.</p>
+      </div>
+    </div>
+
+    <h3>👥 Équipe & Contexte</h3>
+    <div class="subsection">
+      <h4>Structure Organisationnelle</h4>
+      <p><strong>Mon équipe :</strong> Équipe Infrastructure composée de 8 administrateurs systèmes et réseaux.</p>
+      <p><strong>Responsable :</strong> Directeur Technique avec 15 ans d'expérience.</p>
+      <p><strong>Environnement :</strong> Agile et innovant, avec accent sur montée en compétences continues.</p>
+      <p><strong>Outils utilisés :</strong> Jira, Confluence, GitHub, Docker, Kubernetes, Terraform, Ansible.</p>
+    </div>
+
+    <h3>🎯 Réalisations & Impact</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Projets Menés</h4>
+        <p>✓ 8 projets d'infrastructure déployés<br>
+        ✓ 150+ serveurs managés<br>
+        ✓ 2000+ utilisateurs supportés</p>
+      </div>
+      <div class="card">
+        <h4>Performance</h4>
+        <p>✓ Disponibilité infrastructure : 99.95%<br>
+        ✓ Temps moyen résolution : 2.5h<br>
+        ✓ Satisfaction clients : 4.8/5</p>
+      </div>
+      <div class="card">
+        <h4>Certifications</h4>
+        <p>✓ CompTIA A+ obtenue<br>
+        ✓ Microsoft AZ-900 obtenue<br>
+        ✓ Préparation CCNA en cours</p>
+      </div>
+    </div>
+
+    <h3>💡 Points Forts & Apprentissages</h3>
+    <div class="subsection">
+      <h4>Points Forts Développés</h4>
+      <p>✓ <strong>Leadership technique</strong> : Capacité à orienter et supporter d'autres collaborateurs<br>
+      ✓ <strong>Gestion projet</strong> : Expérience en conduite de projets complexes en temps et budget<br>
+      ✓ <strong>Sécurité</strong> : Expertise en sécurité informatique et conformité<br>
+      ✓ <strong>Communication</strong> : Excellentes relations clients et présentation de solutions</p>
+
+      <h4>Domaines Maîtrisés</h4>
+      <p>✓ Infrastructure Windows Server complète<br>
+      ✓ Réseau et routage avancé<br>
+      ✓ Virtualisation et cloud<br>
+      ✓ Sécurité multicouche<br>
+      ✓ Automatisation et scripting</p>
+    </div>
+
+    <button class="btn" style="width: 100%; text-align: center; margin-top: 30px;">📄 Télécharger Mon Dossier Complet</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Salim El Idrissi - Portfolio BTS SIO SISR</p>
+    <p>Administrateur Systèmes & Réseaux | Spécialisation Infrastructure IT & Sécurité</p>
+    <p class="signature">// Code. Build. Secure. Deploy.</p>
+  </footer>
+</body>
+</html>

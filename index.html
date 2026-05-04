@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Salim El Idrissi — Portfolio BTS SIO SISR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#f8fafc;--bg2:#f1f5f9;--bg3:#e8edf5;--accent:#6366f1;--accent2:#8b5cf6;--text:#1e293b;--muted:#64748b;--border:rgba(99,102,241,0.18);--glow:0 0 40px rgba(99,102,241,0.10)}
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden}
+    body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(99,102,241,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;background:rgba(248,250,252,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);box-shadow:0 1px 8px rgba(99,102,241,0.07)}
+    .nav-logo{font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--accent);cursor:pointer}.nav-logo span{color:var(--muted)}
+    .nav-links{display:flex;gap:0;list-style:none}
+    .nav-links li a{display:block;padding:0 1.1rem;height:64px;line-height:64px;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;border-bottom:2px solid transparent;transition:all 0.2s;cursor:pointer}
+    .nav-links li a:hover,.nav-links li a.active{color:var(--accent);border-bottom-color:var(--accent)}
+    .nav-cv{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#fff;background:var(--accent);padding:0.45rem 1.1rem;border-radius:4px;text-decoration:none;transition:all 0.2s}
+    .nav-cv:hover{background:var(--accent2)}
+    .page{display:none;padding-top:64px;min-height:100vh;position:relative;z-index:1}.page.active{display:block}
+    .section{padding:4.5rem 4rem}.divider{border:none;border-top:1px solid var(--border);margin:0 4rem}
+    .section-label{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--accent);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.6rem}
+    .section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:var(--text);letter-spacing:-0.02em;margin-bottom:2.5rem}.section-title em{font-style:normal;color:var(--accent)}
+    .hero{min-height:calc(100vh - 64px);display:flex;align-items:center;padding:4rem;position:relative;background:linear-gradient(135deg,rgba(99,102,241,0.04) 0%,rgba(139,92,246,0.03) 50%,transparent 100%)}
+    .hero-glow{position:absolute;top:15%;left:5%;width:500px;height:500px;background:radial-gradient(circle,rgba(99,102,241,0.08) 0%,transparent 70%);pointer-events:none}
+    .hero-content{max-width:800px}
+    .hero-tag{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;animation:fadeUp 0.7s 0.1s both}.hero-tag::before{content:'';width:28px;height:1px;background:var(--accent)}
+    .hero-name{font-size:clamp(3rem,7vw,6rem);font-weight:800;line-height:1;letter-spacing:-0.02em;color:var(--text);animation:fadeUp 0.7s 0.25s both}.hero-name .accent{color:var(--accent)}
+    .hero-sub{font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--muted);margin:1rem 0 2rem;animation:fadeUp 0.7s 0.4s both}
+    .hero-bio{color:var(--muted);font-size:1.05rem;max-width:560px;margin-bottom:2.5rem;animation:fadeUp 0.7s 0.55s both}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.7s 0.7s both}
+    .btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.8rem 1.8rem;font-family:'JetBrains Mono',monospace;font-size:0.82rem;letter-spacing:0.05em;border-radius:4px;text-decoration:none;cursor:pointer;border:none;transition:all 0.2s}
+    .btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 12px rgba(99,102,241,0.25)}.btn-primary:hover{background:var(--accent2);box-shadow:0 4px 20px rgba(99,102,241,0.35)}
+    .btn-ghost{border:1px solid var(--border);color:var(--text);background:transparent}.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+    .profile-grid{display:grid;grid-template-columns:270px 1fr;gap:4rem;align-items:start}
+    .profile-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:2rem;text-align:center;position:sticky;top:80px;box-shadow:0 4px 24px rgba(99,102,241,0.07)}
+    .avatar{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:800;color:#fff;overflow:hidden}
+    .avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+    .profile-name{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:0.2rem}.profile-role{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);margin-bottom:1.5rem}
+    .profile-contacts{display:flex;flex-direction:column;gap:0.5rem}
+    .profile-contact-item{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem;text-decoration:none;padding:0.4rem 0.6rem;border-radius:4px;transition:background 0.2s}.profile-contact-item:hover{background:rgba(99,102,241,0.07);color:var(--accent)}
+    .about-content p{color:var(--muted);font-size:1rem;margin-bottom:1.1rem;line-height:1.8}.about-content p strong{color:var(--text)}
+    .skills-block{margin-top:2rem}.skill-item{margin-bottom:1.5rem}.skill-header{display:flex;justify-content:space-between;margin-bottom:0.5rem}
+    .skill-name{font-size:0.9rem;font-weight:600;color:var(--text)}.skill-pct{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--accent)}
+    .skill-bar{height:3px;background:rgba(99,102,241,0.1);border-radius:2px;overflow:hidden}.skill-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;width:0;transition:width 1.2s cubic-bezier(0.4,0,0.2,1)}
+    .bts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1rem}.bts-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:1.75rem;box-shadow:0 2px 8px rgba(99,102,241,0.05)}
+    .bts-card-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.3rem}.bts-card-sub{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--accent);margin-bottom:0.75rem}.bts-card p{color:var(--muted);font-size:0.88rem;line-height:1.7}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem}.contact-item{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+    .contact-icon{width:40px;height:40px;border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1rem;flex-shrink:0;background:#fff}
+    .contact-label{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted)}.contact-val{font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--text)}
+    .contact-form{display:flex;flex-direction:column;gap:1rem}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.form-field{display:flex;flex-direction:column;gap:0.35rem}
+    .form-field label{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase}
+    .form-field input,.form-field textarea{background:#fff;border:1px solid var(--border);color:var(--text);font-family:'Inter',sans-serif;font-size:0.92rem;padding:0.8rem 1rem;border-radius:4px;outline:none;transition:border-color 0.2s;resize:vertical}
+    .form-field input:focus,.form-field textarea:focus{border-color:var(--accent)}.form-field textarea{min-height:110px}
+    .project-intro{background:#fff;border:1px solid var(--border);border-radius:6px;padding:2rem 2.5rem;margin-bottom:2.5rem;color:var(--muted);font-size:0.98rem;line-height:1.8;box-shadow:0 2px 8px rgba(99,102,241,0.05)}.project-intro strong{color:var(--text)}
+    .missions-list{display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem}
+    .mission-item{background:#fff;border:1px solid var(--border);border-radius:6px;padding:1.5rem 2rem;display:flex;align-items:center;gap:1.5rem;transition:all 0.25s;box-shadow:0 2px 8px rgba(99,102,241,0.04)}.mission-item:hover{border-color:rgba(99,102,241,0.4);transform:translateX(6px);box-shadow:0 8px 24px rgba(99,102,241,0.10)}
+    .mission-num{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:700;color:rgba(99,102,241,0.25);min-width:48px}.mission-body{flex:1}
+    .mission-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.3rem}.mission-desc{font-size:0.88rem;color:var(--muted)}
+    .mission-link{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--accent);text-decoration:none;border:1px solid rgba(99,102,241,0.25);padding:0.4rem 0.85rem;border-radius:4px;white-space:nowrap;transition:all 0.2s;background:#fff}.mission-link:hover{background:rgba(99,102,241,0.07)}
+    .pro-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+    .pro-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:1.75rem;transition:all 0.25s;position:relative;overflow:hidden;box-shadow:0 2px 8px rgba(99,102,241,0.05)}
+    .pro-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+    .pro-card:hover{border-color:rgba(99,102,241,0.35);transform:translateY(-3px);box-shadow:0 16px 48px rgba(99,102,241,0.12)}.pro-card:hover::before{transform:scaleX(1)}
+    .pro-type{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.75rem}
+    .pro-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.5rem}.pro-desc{font-size:0.87rem;color:var(--muted);line-height:1.65;margin-bottom:1.25rem}
+    .tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem}.tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;padding:0.2rem 0.6rem;background:rgba(99,102,241,0.07);border:1px solid rgba(99,102,241,0.18);color:var(--accent);border-radius:3px}
+    .comp-table{width:100%;border-collapse:collapse;margin-top:1.5rem}.comp-table th{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent);text-align:left;padding:0.75rem 1rem;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:0.1em}
+    .comp-table td{padding:0.75rem 1rem;font-size:0.88rem;color:var(--muted);border-bottom:1px solid rgba(99,102,241,0.06)}.comp-table tr:hover td{color:var(--text);background:rgba(99,102,241,0.02)}
+    .comp-badge{font-family:'JetBrains Mono',monospace;font-size:0.65rem;padding:0.15rem 0.55rem;border-radius:100px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);color:var(--accent)}
+    .certifs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+    .certif-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:1.5rem;display:flex;align-items:center;gap:1rem;transition:all 0.2s;box-shadow:0 2px 8px rgba(99,102,241,0.04)}.certif-card:hover{border-color:rgba(99,102,241,0.35);box-shadow:0 8px 24px rgba(99,102,241,0.08)}
+    .certif-icon{width:40px;height:40px;background:rgba(99,102,241,0.08);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+    .certif-name{font-size:0.9rem;font-weight:600;color:var(--text)}.certif-org{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted)}
+    .veille-hero{background:linear-gradient(135deg,rgba(99,102,241,0.05),rgba(139,92,246,0.05));border:1px solid var(--border);border-radius:8px;padding:3rem;margin-bottom:3rem}
+    .veille-hero-title{font-size:1.6rem;font-weight:800;color:var(--text);margin-bottom:1rem}.veille-hero p{color:var(--muted);font-size:1rem;line-height:1.8;max-width:700px}
+    .veille-2col{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-bottom:2rem}.veille-block{background:#fff;border:1px solid var(--border);border-radius:6px;padding:2rem;box-shadow:0 2px 8px rgba(99,102,241,0.04)}
+    .veille-block-title{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:1rem}.veille-block p{color:var(--muted);font-size:0.9rem;line-height:1.75;margin-bottom:0.75rem}.veille-block p strong{color:var(--text)}
+    .veille-block ul{padding-left:1.25rem}.veille-block ul li{color:var(--muted);font-size:0.9rem;margin-bottom:0.5rem;line-height:1.6}.veille-block ul li strong{color:var(--text)}
+    .solution-grid{display:flex;flex-direction:column;gap:1rem}.solution-row{display:flex;gap:1rem;align-items:flex-start}
+    .sol-icon{width:38px;height:38px;background:rgba(99,102,241,0.08);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem}
+    .sol-title{font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:0.15rem}.sol-desc{font-size:0.82rem;color:var(--muted)}
+    .entreprise-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:3rem}
+    .entreprise-header-text h2{font-size:2rem;font-weight:800;color:var(--text);margin-bottom:1rem}.entreprise-header-text p{color:var(--muted);font-size:1rem;line-height:1.8;margin-bottom:0.75rem}.entreprise-header-text p strong{color:var(--text)}
+    .entreprise-logo-box{background:#fff;border:1px solid var(--border);border-radius:8px;padding:3rem;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace;text-align:center;box-shadow:0 4px 16px rgba(99,102,241,0.08)}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;margin-bottom:3rem}
+    .service-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:1.5rem;transition:all 0.2s;box-shadow:0 2px 8px rgba(99,102,241,0.04)}.service-card:hover{border-color:rgba(99,102,241,0.35);transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,102,241,0.10)}
+    .service-icon{font-size:1.75rem;margin-bottom:0.75rem}.service-title{font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:0.4rem}.service-desc{font-size:0.83rem;color:var(--muted);line-height:1.6}
+    .market-grid{display:flex;gap:1rem;flex-wrap:wrap}.market-badge{font-family:'JetBrains Mono',monospace;font-size:0.78rem;padding:0.5rem 1.25rem;background:rgba(99,102,241,0.07);border:1px solid rgba(99,102,241,0.18);color:var(--accent);border-radius:4px}
+    .cv-section{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+    .cv-section-text h3{font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.4rem}.cv-section-text p{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted)}
+    /* PDF EMBED */
+    .doc-wrap{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(99,102,241,0.05)}
+    .doc-header{padding:0.85rem 1.25rem;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+    .doc-name{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--text);font-weight:500}
+    .doc-type{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);background:rgba(99,102,241,0.08);padding:0.2rem 0.5rem;border-radius:3px;border:1px solid rgba(99,102,241,0.18)}
+    .doc-embed{width:100%;height:500px;border:none}
+    .doc-actions{padding:0.75rem 1.25rem;background:var(--bg2);border-top:1px solid var(--border);display:flex;gap:0.75rem}
+    .doc-placeholder{padding:2.5rem;text-align:center;color:var(--muted);background:var(--bg2)}
+    .doc-placeholder .icon{font-size:2.5rem;margin-bottom:0.75rem}
+    .doc-placeholder .title{font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--text);font-weight:600;margin-bottom:0.4rem}
+    .doc-placeholder .sub{font-family:'JetBrains Mono',monospace;font-size:0.72rem}
+    .preuves-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin:2rem 0 1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.5rem}
+    .preuves-label::before{content:'';width:14px;height:1px;background:var(--accent)}
+    footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--bg2)}
+    .footer-logo{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--accent)}.footer-copy{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo" onclick="showPage('accueil')"><span>~/</span>salim.el-idrissi</div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('accueil')" data-page="accueil" class="active">Accueil</a></li>
+    <li><a onclick="showPage('synthese')" data-page="synthese">E5</a></li>
+    <li><a onclick="showPage('situations')" data-page="situations">E6</a></li>
+    <li><a onclick="showPage('veille')" data-page="veille">Veille Techno</a></li>
+    <li><a onclick="showPage('entreprise')" data-page="entreprise">Entreprise</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================ ACCUEIL -->
+<div class="page active" id="page-accueil">
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Disponible · Les Mureaux · FR-78</div>
+      <h1 class="hero-name">Salim<br><span class="accent">El Idrissi</span></h1>
+      <p class="hero-sub">BTS SIO SISR · ITECH</p>
+      <p class="hero-bio">Étudiant en BTS SIO option SISR en alternance. Passionné par l'infrastructure réseau, l'administration systèmes et la cybersécurité.</p>
+      <div class="hero-actions">
+        <a onclick="showPage('situations')" class="btn btn-primary">Voir mes projets →</a>
+        <a onclick="showPage('entreprise')" class="btn btn-ghost">Mon entreprise</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="profile-grid">
+      <div class="profile-card reveal">
+        <div class="avatar">
+          <img src="documents/photo-salim.jpg" alt="Salim El Idrissi" onerror="this.outerHTML='SE'"/>
+        </div>
+        <div class="profile-name">Salim El Idrissi</div>
+        <div class="profile-role">Étudiant BTS SIO — SISR</div>
+        <div class="profile-contacts">
+          <a href="mailto:elsalim579@gmail.com" class="profile-contact-item">✉ elsalim579@gmail.com</a>
+          <a href="tel:+33667236393" class="profile-contact-item">📞 +33 6 67 23 63 93</a>
+          <div class="profile-contact-item">📍 Les Mureaux · FR-78</div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">// À propos</div>
+        <h2 class="section-title">Mon <em>Profil</em></h2>
+        <div class="about-content reveal">
+          <p>Je suis Salim, étudiant en BTS SIO option SISR en alternance chez ITECH à Les Mureaux. Passionné par l'informatique depuis toujours, j'ai choisi cette formation pour me spécialiser dans les réseaux, les systèmes et la cybersécurité.</p>
+          <p>Je me concentre sur l'administration des infrastructures, la gestion de parc avec GLPI et OCS Inventory, la configuration des services réseau comme Active Directory, DHCP et DNS, ainsi que la segmentation réseau par VLANs.</p>
+          <p>Mon objectif est d'obtenir le BTS SIO SISR puis de poursuivre en Bachelor Administrateur Systèmes et Réseaux ou Cybersécurité.</p>
+        </div>
+        <div class="skills-block reveal">
+          <div class="section-label" style="margin-top:2rem">// Compétences</div>
+          <div class="skill-item"><div class="skill-header"><span class="skill-name">Réseaux &amp; Infrastructure</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
+          <div class="skill-item"><div class="skill-header"><span class="skill-name">Active Directory &amp; Services</span><span class="skill-pct">75%</span></div><div class="skill-bar"><div class="skill-fill" data-width="75"></div></div></div>
+          <div class="skill-item"><div class="skill-header"><span class="skill-name">Gestion de parc (GLPI/OCS)</span><span class="skill-pct">75%</span></div><div class="skill-bar"><div class="skill-fill" data-width="75"></div></div></div>
+          <div class="skill-item"><div class="skill-header"><span class="skill-name">Cybersécurité</span><span class="skill-pct">65%</span></div><div class="skill-bar"><div class="skill-fill" data-width="65"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+  <div class="section reveal">
+    <div class="section-label">// Formation</div>
+    <h2 class="section-title">Le BTS <em>SIO</em></h2>
+    <p style="color:var(--muted);max-width:700px;margin-bottom:2rem">Le BTS SIO (Services Informatiques aux Organisations) est un diplôme national Bac+2 préparant à la fourniture de services informatiques pour les entreprises, en formation initiale ou en alternance.</p>
+    <div class="bts-grid">
+      <div class="bts-card"><div class="bts-card-title">Option SISR</div><div class="bts-card-sub">Solutions d'Infrastructure, Systèmes et Réseaux</div><p>Administration systèmes &amp; réseaux, virtualisation, cloud, sécurité infrastructure, support technique.</p></div>
+      <div class="bts-card"><div class="bts-card-title">Option SLAM</div><div class="bts-card-sub">Solutions Logicielles et Applications Métiers</div><p>Développement applicatif, bases de données, analyse des besoins, tests et maintenance logicielle.</p></div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+  <div class="section" style="background:var(--bg2);border-top:1px solid var(--border)">
+    <div class="contact-grid reveal">
+      <div>
+        <div class="section-label">// Contact</div>
+        <h2 class="section-title">Me <em>contacter</em></h2>
+        <div class="contact-item"><div class="contact-icon">✉</div><div><div class="contact-label">Email</div><div class="contact-val">elsalim579@gmail.com</div></div></div>
+        <div class="contact-item"><div class="contact-icon">📞</div><div><div class="contact-label">Téléphone</div><div class="contact-val">+33 6 67 23 63 93</div></div></div>
+        <div class="contact-item"><div class="contact-icon">📍</div><div><div class="contact-label">Localisation</div><div class="contact-val">Les Mureaux · FR-78</div></div></div>
+      </div>
+      <form class="contact-form" onsubmit="return false">
+        <div class="form-row">
+          <div class="form-field"><label>Nom *</label><input type="text" placeholder="Jean Dupont"/></div>
+          <div class="form-field"><label>Email *</label><input type="email" placeholder="jean@exemple.fr"/></div>
+        </div>
+        <div class="form-field"><label>Sujet</label><input type="text" placeholder="Opportunité, projet..."/></div>
+        <div class="form-field"><label>Message *</label><textarea placeholder="Votre message..."></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:fit-content">Envoyer →</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ TABLEAU E5 -->
+<div class="page" id="page-synthese">
+  <div class="section">
+    <div class="section-label">// Épreuve E5</div>
+    <h2 class="section-title">Tableau de <em>synthèse</em></h2>
+    <div class="project-intro reveal">
+      <strong>Rôle du tableau de synthèse :</strong> Ce document récapitule l'ensemble des compétences du référentiel BTS SIO SISR mises en œuvre lors des 3 situations professionnelles. Il fait le lien entre chaque activité réalisée et les blocs de compétences correspondants, et constitue le support de l'épreuve E5.
+    </div>
+
+    <div class="missions-list">
+      <div class="mission-item reveal">
+        <div class="mission-num">01</div>
+        <div class="mission-body">
+          <div class="mission-title">Restructuration réseau — VLAN &amp; segmentation (Stadium Company)</div>
+          <div class="mission-desc">Compétences : C1.1 · C1.2 · C2.1 — Plan d'adressage, VLAN, routage inter-VLAN, ACL</div>
+        </div>
+        <a onclick="showPage('situations')" class="mission-link">→ Voir la situation</a>
+      </div>
+      <div class="mission-item reveal">
+        <div class="mission-num">02</div>
+        <div class="mission-body">
+          <div class="mission-title">GLPI &amp; OCS Inventory — Gestion du parc informatique</div>
+          <div class="mission-desc">Compétences : C3.1 · C3.2 · C4.1 — Inventaire, CMDB, helpdesk, gestion des actifs</div>
+        </div>
+        <a onclick="showPage('situations')" class="mission-link">→ Voir la situation</a>
+      </div>
+      <div class="mission-item reveal">
+        <div class="mission-num">03</div>
+        <div class="mission-body">
+          <div class="mission-title">Active Directory, DHCP &amp; DNS — Services réseau</div>
+          <div class="mission-desc">Compétences : C2.2 · C2.3 · C4.2 — AD, GPO, DNS zones, DHCP, profils itinérants</div>
+        </div>
+        <a onclick="showPage('situations')" class="mission-link">→ Voir la situation</a>
+      </div>
+    </div>
+
+    <div class="doc-wrap reveal">
+      <div class="doc-header">
+        <span class="doc-name">TABLEAU DE SYNTHESE.xlsx</span>
+        <span class="doc-type">XLSX</span>
+      </div>
+      <div class="doc-placeholder">
+        <div class="icon">📊</div>
+        <div class="title">Tableau de synthèse des compétences E5</div>
+        <div class="sub">Fichier Excel — Télécharger pour ouvrir dans Excel</div>
+      </div>
+      <div class="doc-actions">
+        <a href="documents/TABLEAU DE SYNTHESE.xlsx" download class="btn btn-primary">↓ Télécharger le tableau complet</a>
+      </div>
+    </div>
+
+    <hr class="divider" style="margin:0 0 3rem"/>
+    <div class="section-label reveal">// Certifications obtenues</div>
+    <div class="certifs-grid reveal" style="margin-top:1.5rem">
+      <div class="certif-card"><div class="certif-icon">🛡️</div><div><div class="certif-name">Introduction to Cybersecurity</div><div class="certif-org">Cisco Networking Academy</div></div></div>
+      <div class="certif-card"><div class="certif-icon">🔐</div><div><div class="certif-name">Cybersécurité — SecNumAcadémie</div><div class="certif-org">ANSSI</div></div></div>
+      <div class="certif-card"><div class="certif-icon">🐧</div><div><div class="certif-name">NDG Linux Essentials</div><div class="certif-org">Cisco / Linux Foundation</div></div></div>
+    </div>
+  </div>
+  <footer><div class="footer-logo">SE · Salim El Idrissi — Portfolio BTS SIO</div><div class="footer-copy">© 2026 · ITECH</div></footer>
+</div>
+
+<!-- ============================================================ SITUATIONS -->
+<div class="page" id="page-situations">
+  <div class="section">
+    <div class="section-label">// Épreuve E5 — Situations professionnelles</div>
+    <h2 class="section-title">Mes <em>3 situations</em></h2>
+
+    <!-- SITUATION 1 -->
+    <div class="project-intro reveal">
+      <strong>Situation 01 — Restructuration réseau · VLAN &amp; segmentation :</strong> Projet Stadium Company — modernisation de l'infrastructure réseau d'un stade. Le réseau initial n'était pas dimensionné pour répondre aux évolutions technologiques ni aux besoins de sécurité. Le stade compte 170 salariés permanents, environ 80 intérimaires lors des événements, ainsi que plusieurs sites distants reliés via des connexions DSL.
+    </div>
+
+    <div class="missions-list">
+      <div class="mission-item reveal">
+        <div class="mission-num">S1</div>
+        <div class="mission-body">
+          <div class="mission-title">Restructuration de l'infrastructure Stadium Company</div>
+          <div class="mission-desc">Plan d'adressage 172.20.0.0/22 · VLANs Admin/Prod/DMZ · Trunks · Routage inter-VLAN · ACLs Cisco</div>
+        </div>
+        <div class="tags" style="margin:0"><span class="tag">VLAN</span><span class="tag">ACL</span><span class="tag">Cisco</span></div>
+      </div>
+    </div>
+
+    <div class="preuves-label">Preuves — Situation 01</div>
+    <div class="doc-wrap reveal">
+      <div class="doc-header">
+        <span class="doc-name">Cahier des charges — Stadium Company 2026</span>
+        <span class="doc-type">PDF</span>
+      </div>
+      <embed src="documents/cahier_charges_stadium_company_edite-2026.pdf" type="application/pdf" class="doc-embed" title="Cahier des charges Stadium"/>
+      <div class="doc-actions">
+        <a href="documents/cahier_charges_stadium_company_edite-2026.pdf" target="_blank" class="btn btn-primary">↗ Ouvrir</a>
+        <a href="documents/cahier_charges_stadium_company_edite-2026.pdf" download class="btn btn-ghost">↓ Télécharger</a>
+      </div>
+    </div>
+
+    <hr class="divider" style="margin:3rem 0"/>
+
+    <!-- SITUATION 2 -->
+    <div class="project-intro reveal">
+      <strong>Situation 02 — GLPI &amp; OCS Inventory · Gestion de parc :</strong> Mise en place d'une solution de gestion de parc et de helpdesk pour centraliser les informations sur les équipements et structurer le traitement des incidents informatiques. Objectif : visibilité complète sur le parc, CMDB opérationnelle et gestion des tickets.
+    </div>
+
+    <div class="missions-list">
+      <div class="mission-item reveal">
+        <div class="mission-num">S2</div>
+        <div class="mission-body">
+          <div class="mission-title">Déploiement OCS Inventory + GLPI — Inventaire &amp; helpdesk</div>
+          <div class="mission-desc">Inventaire automatique OCS · Intégration GLPI · Gestion des tickets · CMDB · Fiches équipements</div>
+        </div>
+        <div class="tags" style="margin:0"><span class="tag">GLPI</span><span class="tag">OCS</span><span class="tag">CMDB</span></div>
+      </div>
+    </div>
+
+    <div class="preuves-label">Preuves — Situation 02</div>
+    <div class="doc-wrap reveal">
+      <div class="doc-header">
+        <span class="doc-name">Procédure OCS Inventory</span>
+        <span class="doc-type">PDF</span>
+      </div>
+      <embed src="documents/Procédure OCS.pdf" type="application/pdf" class="doc-embed" title="Procédure OCS"/>
+      <div class="doc-actions">
+        <a href="documents/Procédure OCS.pdf" target="_blank" class="btn btn-primary">↗ Ouvrir</a>
+        <a href="documents/Procédure OCS.pdf" download class="btn btn-ghost">↓ Télécharger</a>
+      </div>
+    </div>
+    <div class="doc-wrap reveal" style="margin-top:1.5rem">
+      <div class="doc-header">
+        <span class="doc-name">Guide utilisateur GLPI v2.02</span>
+        <span class="doc-type">PDF</span>
+      </div>
+      <embed src="documents/GLPI-GuideUtilisateurV2.02.pdf" type="application/pdf" class="doc-embed" title="Guide GLPI"/>
+      <div class="doc-actions">
+        <a href="documents/GLPI-GuideUtilisateurV2.02.pdf" target="_blank" class="btn btn-primary">↗ Ouvrir</a>
+        <a href="documents/GLPI-GuideUtilisateurV2.02.pdf" download class="btn btn-ghost">↓ Télécharger</a>
+      </div>
+    </div>
+
+    <hr class="divider" style="margin:3rem 0"/>
+
+    <!-- SITUATION 3 -->
+    <div class="project-intro reveal">
+      <strong>Situation 03 — Active Directory, DHCP &amp; DNS · Services réseau :</strong> Déploiement d'un annuaire Active Directory et des services réseau essentiels pour centraliser l'authentification, automatiser l'adressage IP et appliquer les politiques de sécurité via GPO en environnement Windows Server.
+    </div>
+
+    <div class="missions-list">
+      <div class="mission-item reveal">
+        <div class="mission-num">S3</div>
+        <div class="mission-body">
+          <div class="mission-title">Déploiement AD / DHCP / DNS — Services réseau Windows Server</div>
+          <div class="mission-desc">OUs · GPO · DNS primaire/secondaire · Zones directes/inverses · DHCP options · Profils itinérants</div>
+        </div>
+        <div class="tags" style="margin:0"><span class="tag">AD</span><span class="tag">DHCP</span><span class="tag">DNS</span><span class="tag">GPO</span></div>
+      </div>
+    </div>
+
+    <div class="preuves-label">Preuves — Situation 03</div>
+    <div class="doc-wrap reveal">
+      <div class="doc-header">
+        <span class="doc-name">Procédure AD / DHCP / DNS</span>
+        <span class="doc-type">DOCX</span>
+      </div>
+      <div class="doc-placeholder">
+        <div class="icon">📝</div>
+        <div class="title">Procédure complète Active Directory, DHCP &amp; DNS</div>
+        <div class="sub">Configuration pas à pas avec captures d'écran · Format Word</div>
+      </div>
+      <div class="doc-actions">
+        <a href="documents/Procédure AD-DHCP-DNS.docx" download class="btn btn-primary">↓ Télécharger la procédure</a>
+      </div>
+    </div>
+  </div>
+  <footer><div class="footer-logo">SE · Salim El Idrissi — Portfolio BTS SIO</div><div class="footer-copy">© 2026 · ITECH</div></footer>
+</div>
+
+<!-- ============================================================ COMPÉTENCES -->
+<!-- ============================================================ VEILLE -->
+<div class="page" id="page-veille">
+  <div class="section">
+    <div class="section-label">// Veille Technologique</div>
+    <h2 class="section-title"><em>Thème</em> de veille</h2>
+
+    <div class="veille-hero reveal">
+      <div class="veille-hero-title">Évolution des menaces réseau et solutions de défense en infrastructure SISR</div>
+      <p>Dans le cadre de ma spécialisation SISR, ma veille porte sur les nouvelles menaces pesant sur les infrastructures réseau d'entreprise (ransomwares, intrusions, phishing ciblé) et les solutions de défense adaptées : segmentation, supervision, durcissement des services.</p>
+    </div>
+
+    <div class="veille-2col">
+      <div class="veille-block reveal">
+        <div class="veille-block-title">🔍 Contexte et enjeux</div>
+        <p>Les attaques contre les infrastructures réseau se multiplient et se sophistiquent. Les PME et ETI sont particulièrement visées en raison de leur niveau de protection souvent insuffisant.</p>
+        <p><strong>Chiffres clés :</strong> +38% d'attaques réseau en 2024, coût moyen d'une intrusion : 4,2M€.</p>
+      </div>
+      <div class="veille-block reveal">
+        <div class="veille-block-title">🔴 Menaces identifiées</div>
+        <ul>
+          <li><strong>Ransomware</strong> — chiffrement des données et rançon</li>
+          <li><strong>Intrusions latérales</strong> — mouvement entre VLANs</li>
+          <li><strong>Phishing ciblé</strong> — usurpation de comptes AD</li>
+          <li><strong>Attaques DHCP/DNS</strong> — spoofing, empoisonnement</li>
+        </ul>
+      </div>
+    </div>
+    <div class="veille-2col">
+      <div class="veille-block reveal">
+        <div class="veille-block-title">🛡️ Solutions de défense</div>
+        <div class="solution-grid">
+          <div class="solution-row"><div class="sol-icon">🔒</div><div><div class="sol-title">Segmentation VLAN stricte</div><div class="sol-desc">Isolation des flux, ACLs et pare-feux inter-VLAN</div></div></div>
+          <div class="solution-row"><div class="sol-icon">👁️</div><div><div class="sol-title">Supervision centralisée</div><div class="sol-desc">SIEM, Zabbix, logs centralisés pour détection rapide</div></div></div>
+          <div class="solution-row"><div class="sol-icon">🔑</div><div><div class="sol-title">GPO et MFA Active Directory</div><div class="sol-desc">Politiques de sécurité, MFA, verrouillage de comptes</div></div></div>
+        </div>
+      </div>
+      <div class="veille-block reveal">
+        <div class="veille-block-title">🤖 Rôle de l'IA</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.5rem">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1rem">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#ef4444;margin-bottom:0.5rem">⚠ Risques IA</div>
+            <p style="font-size:0.85rem">Attaques plus ciblées, automatisation des intrusions, deepfake pour phishing.</p>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1rem">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem">✓ Défense IA</div>
+            <p style="font-size:0.85rem">Détection d'anomalies temps réel, analyse comportementale, réponse automatisée.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><div class="footer-logo">SE · Salim El Idrissi — Portfolio BTS SIO</div><div class="footer-copy">© 2026 · ITECH</div></footer>
+</div>
+
+<!-- ============================================================ ENTREPRISE -->
+<div class="page" id="page-entreprise">
+  <div class="section">
+    <div class="section-label">// Mon Entreprise</div>
+    <h2 class="section-title">Présentation de <em>l'entreprise</em></h2>
+
+    <div class="entreprise-header reveal">
+      <div class="entreprise-header-text">
+        <h2>ITECH</h2>
+        <p>ITECH est une entreprise spécialisée dans les services informatiques aux entreprises, basée à Les Mureaux. Elle intervient sur l'installation, la maintenance et le support des systèmes d'information pour des clients PME et collectivités locales.</p>
+        <p>L'entreprise propose des services complets : support utilisateur, administration des postes et serveurs, gestion de parc et conseil en infrastructure.</p>
+      </div>
+      <div class="entreprise-logo-box reveal">ITECH</div>
+    </div>
+
+    <div class="section-label reveal">// Services proposés</div>
+    <div class="services-grid">
+      <div class="service-card reveal"><div class="service-icon">🖥️</div><div class="service-title">Support technique</div><div class="service-desc">Assistance utilisateur, résolution d'incidents, maintenance préventive et corrective.</div></div>
+      <div class="service-card reveal"><div class="service-icon">🖧</div><div class="service-title">Infrastructure réseau</div><div class="service-desc">Installation et configuration de réseaux, VLANs, switches et routeurs.</div></div>
+      <div class="service-card reveal"><div class="service-icon">🔒</div><div class="service-title">Cybersécurité</div><div class="service-desc">Sécurisation des postes, gestion des accès, antivirus et mises à jour critiques.</div></div>
+      <div class="service-card reveal"><div class="service-icon">📦</div><div class="service-title">Gestion de parc</div><div class="service-desc">Inventaire, déploiement, suivi et maintenance du parc informatique clients.</div></div>
+    </div>
+
+    <hr class="divider" style="margin:0 0 2rem"/>
+    <div class="section-label reveal">// Marchés couverts</div>
+    <div class="market-grid reveal" style="margin-top:1rem">
+      <span class="market-badge">PME</span>
+      <span class="market-badge">Collectivités</span>
+      <span class="market-badge">Services</span>
+      <span class="market-badge">Commerce</span>
+    </div>
+
+    <div style="margin-top:3rem" class="reveal">
+      <div class="section-label">// Mon rôle dans l'entreprise</div>
+      <div class="pro-grid" style="margin-top:1.5rem">
+        <div class="pro-card"><div class="pro-type">Juillet – Août 2025 · Stage</div><div class="pro-title">Support &amp; Maintenance informatique</div><div class="pro-desc">Installation de postes, aide à la résolution d'incidents, branchement et vérification de matériel, découverte de l'environnement professionnel.</div><div class="tags"><span class="tag">Support N1</span><span class="tag">Windows</span><span class="tag">Matériel</span></div></div>
+        <div class="pro-card"><div class="pro-type">Septembre 2025 – Présent · Alternance</div><div class="pro-title">Technicien infrastructure en alternance</div><div class="pro-desc">Participation à la gestion du parc informatique, configuration de services réseau, support utilisateur et documentation des procédures.</div><div class="tags"><span class="tag">Infrastructure</span><span class="tag">GLPI</span><span class="tag">AD</span><span class="tag">Réseaux</span></div></div>
+      </div>
+    </div>
+  </div>
+  <footer><div class="footer-logo">SE · Salim El Idrissi — Portfolio BTS SIO</div><div class="footer-copy">© 2026 · ITECH</div></footer>
+</div>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  const l=document.querySelector('[data-page="'+id+'"]');
+  if(l) l.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(()=>{
+    const p=document.querySelector('.page.active');
+    p.querySelectorAll('.reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('visible'),i*60));
+    p.querySelectorAll('.skill-fill').forEach(b=>{b.style.width=b.dataset.width+'%'});
+  },80);
+  return false;
+}
+setTimeout(()=>{
+  document.querySelector('.page.active').querySelectorAll('.reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('visible'),i*60));
+  document.querySelectorAll('.skill-fill').forEach(b=>{b.style.width=b.dataset.width+'%'});
+},200);
+</script>
+</body>
+</html>
